@@ -1,35 +1,21 @@
 <html>
-  <head>
-    <style>
-      body {
-        font-family: "Helvetica Neue", helvetica, arial;
-        padding: 15px;
-      }
-
-      ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-      }
-
-      ul li {
-        line-height: 1.4;
-      }
-    </style>
+    <body>
+        <h1>Pings</h1>
+        <h2 id="foo"></h2>
+    </body>
 
     <script>
-      var host = location.origin.replace(/^http/, 'ws')
+      var host = location.origin.replace(/^http/, 'ws');
+      var p = document.createElement('p');
+      p.innerHTML = host;
+      document.querySelector('#foo').appendChild(p);
       var ws = new WebSocket(host);
+      ws.onopen = function(event) {
+           //ws.send('i am a web client');
+      }
       ws.onmessage = function (event) {
-        var li = document.createElement('li');
-        li.innerHTML = JSON.parse(event.data);
-        document.querySelector('#pings').appendChild(li);
+          p.innerHTML = JSON.parse(event.data);
       };
     </script>
-  </head>
-  <body>
-    <h1>Pings</h1>
-    <ul id='pings'></ul>
-  </body>
 </html>
 

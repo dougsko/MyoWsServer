@@ -1,25 +1,32 @@
 require 'sinatra'
 require 'faye/websocket'
 require 'json'
+
+# run with: foreman start
+
 Faye::WebSocket.load_adapter('thin')
 
+@clients = []
 App = lambda do |env|
   if Faye::WebSocket.websocket?(env)
     ws = Faye::WebSocket.new(env)
+    @clients << ws
 
     ws.on :open do |e|
       puts "websocket connection open"
-      timer = EM.add_periodic_timer(1) do
-        begin
-          ws.send(Time.now.to_s.to_json)
-        rescue NoMethodError
-          EM.cancel_timer(timer)
+    end
+
+    ws.on :message do |msg|
+        puts "received msg: " + msg.data
+        everyone_else = @clients.select{ |client| client != ws}
+        everyone_else.each do |client|
+            client.send(msg.data.to_json)
         end
-      end
     end
 
     ws.on :close do |event|
       puts "websocket connection closed"
+      @clients.delete(ws)
       ws = nil
     end
 
