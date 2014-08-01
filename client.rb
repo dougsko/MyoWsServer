@@ -12,7 +12,7 @@ EM.run {
     ws.send('Hello, world!')
     timer = EM.add_periodic_timer(1) do
         begin
-          ws.send(Time.now.to_s.to_json)
+          ws.send(Time.now.to_s)
         rescue NoMethodError
           EM.cancel_timer(timer)
         end
