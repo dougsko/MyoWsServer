@@ -33,9 +33,11 @@ App = lambda do |env|
     ws.rack_response
   else
     if env["REQUEST_PATH"] == "/"
-      [200, {}, File.read('./index.html')]
+        [200, {}, File.read('./index.html')]
+    elsif env["REQUEST_PATH"] == "/pong"
+        [200, {}, File.read('./pong.html')]
     else
-      [404, {}, '']
+        [404, {}, '']
     end
   end
 end

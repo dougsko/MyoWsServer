@@ -1,15 +1,14 @@
 <html>
     <body>
         <h1>Myo Gestures</h1>
-        <h2 id="foo"></h2>
+        <h2 id="gesture"></h2>
     </body>
 
     <script>
       var host = location.origin.replace(/^http/, 'ws');
       var p = document.createElement('p');
-      p.innerHTML = host;
-      document.querySelector('#foo').appendChild(p);
       var ws = new WebSocket(host);
+      document.querySelector('#gesture').appendChild(p);
       ws.onopen = function(event) {
            //ws.send('i am a web client');
       }

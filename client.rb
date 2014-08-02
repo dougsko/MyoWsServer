@@ -9,10 +9,16 @@ EM.run {
 
   ws.on :open do |event|
     p [:open]
-    ws.send('Hello, world!')
+    #ws.send('Hello, world!')
     timer = EM.add_periodic_timer(1) do
         begin
-          ws.send(Time.now.to_s)
+          #ws.send(Time.now.to_s)
+          if rand(100) % 3 == 0
+            ws.send("waveIn")
+          elsif
+            ws.send("waveOut")
+          else
+          end
         rescue NoMethodError
           EM.cancel_timer(timer)
         end
