@@ -1,26 +1,20 @@
 <html>
     <body>
         <h1>Myo Websocket Server</h1>
-        <div id="pose"></div>
-        <div id="orientData"></div>
+        <div id="myo"></div>
     </body>
 
     <script>
       var host = location.origin.replace(/^http/, 'ws');
-      var pose = document.createElement('p');
-      var orientData = document.createElement('p');
+      var myo = document.createElement('p');
       var ws = new WebSocket(host);
-      document.querySelector('#pose').appendChild(pose);
-      document.querySelector('#orientData').appendChild(orientData);
+      document.querySelector('#myo').appendChild(myo);
       ws.onopen = function(event) {
            //ws.send('i am a web client');
       }
       ws.onmessage = function (event) {
           var myo = JSON.parse(event.data);
-          console.log(typeof(myo));
-          console.log(JSON.stringify(myo));
-          pose.innerHTML = myo.pose;
-          orientData.innerHTML = myo.orientData.x
+          myo.innerHTML = JSON.stringify(myo);
       };
     </script>
 </html>
