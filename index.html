@@ -14,6 +14,7 @@
       }
       ws.onmessage = function (event) {
           var myo = JSON.parse(event.data);
+          console.log(myo);
           myo.innerHTML = JSON.stringify(myo);
       };
     </script>
