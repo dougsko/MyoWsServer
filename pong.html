@@ -36,6 +36,7 @@ socket.onmessage = function(e) {
     if(pose == 'fist'){
         center_z = z;
     }
+
 }
 
  
@@ -50,8 +51,7 @@ var render = function () {
 };
  
 var update = function () {
-    //player.update(pose);
-    player.update();
+    player.update(pose);
     computer.update(ball);
     ball.update(player.paddle, computer.paddle);
 };
@@ -122,14 +122,17 @@ Player.prototype.render = function () {
     this.paddle.render();
 };
  
-Player.prototype.update = function () {
-    //console.log(pose);
+Player.prototype.update = function (pose) {
     /*
+    console.log(pose);
     if (pose == "waveIn") {
         this.paddle.move(-4, 0);
     }
     else if (pose == "waveOut") {
         this.paddle.move(4, 0);
+    }
+    else {
+        this.paddle.move(0, 0);
     }
     */
     if(z > center_z) {
@@ -148,7 +151,7 @@ Player.prototype.update = function () {
     for (var key in keysDown) {
         var value = Number(key);
         if (value == 37) {
-            this.paddle.move(4*diff_z, 0);
+            this.paddle.move(-4, 0);
         } else if (value == 39) {
             this.paddle.move(4, 0);
         } else {

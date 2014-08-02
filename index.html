@@ -13,9 +13,9 @@
            //ws.send('i am a web client');
       }
       ws.onmessage = function (event) {
-          var myo = JSON.parse(event.data);
-          console.log(myo);
-          myo.innerHTML = JSON.stringify(myo);
+          var myo_data = JSON.parse(event.data);
+          console.log(JSON.stringify(myo_data));
+          myo.innerHTML = JSON.stringify(myo_data);
       };
     </script>
 </html>
