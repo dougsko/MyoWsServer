@@ -20,7 +20,7 @@ App = lambda do |env|
         puts "received msg: " + msg.data
         everyone_else = @clients.select{ |client| client != ws}
         everyone_else.each do |client|
-            client.send(msg.data.to_json)
+            client.send(msg.data)
         end
     end
 

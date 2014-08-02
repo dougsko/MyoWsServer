@@ -1,19 +1,26 @@
 <html>
     <body>
-        <h1>Myo Gestures</h1>
-        <h2 id="gesture"></h2>
+        <h1>Myo Websocket Server</h1>
+        <div id="pose"></div>
+        <div id="orientData"></div>
     </body>
 
     <script>
       var host = location.origin.replace(/^http/, 'ws');
-      var p = document.createElement('p');
+      var pose = document.createElement('p');
+      var orientData = document.createElement('p');
       var ws = new WebSocket(host);
-      document.querySelector('#gesture').appendChild(p);
+      document.querySelector('#pose').appendChild(pose);
+      document.querySelector('#orientData').appendChild(orientData);
       ws.onopen = function(event) {
            //ws.send('i am a web client');
       }
       ws.onmessage = function (event) {
-          p.innerHTML = JSON.parse(event.data);
+          var myo = JSON.parse(event.data);
+          console.log(typeof(myo));
+          console.log(JSON.stringify(myo));
+          pose.innerHTML = myo.pose;
+          orientData.innerHTML = myo.orientData.x
       };
     </script>
 </html>

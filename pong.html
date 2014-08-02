@@ -16,12 +16,26 @@ var player = new Player();
 var computer = new Computer();
 var ball = new Ball(200, 300);
 var socket = new WebSocket('ws://myo-ws-server.herokuapp.com')
+//var socket = new WebSocket('ws://192.168.1.106:5000')
 var pose;
-
+var old_x, old_y, old_z;
+var x, y, z;
+var diff_x, diff_y, diff_z;
+var myo;
+var old_myo;
+var tmp = 0;
+var center_z;
 
 socket.onmessage = function(e) {
-    pose = JSON.parse(e.data);
-    //console.log(e.data);
+    //pose = JSON.parse(e.data);
+    myo = JSON.parse(e.data);
+    pose = myo.pose;
+    old_z = z;
+    z = myo.orientData.z;
+    diff_z = z - old_z;
+    if(pose == 'fist'){
+        center_z = z;
+    }
 }
 
  
@@ -36,7 +50,8 @@ var render = function () {
 };
  
 var update = function () {
-    player.update(pose);
+    //player.update(pose);
+    player.update();
     computer.update(ball);
     ball.update(player.paddle, computer.paddle);
 };
@@ -107,13 +122,25 @@ Player.prototype.render = function () {
     this.paddle.render();
 };
  
-Player.prototype.update = function (pose) {
-    console.log(pose);
+Player.prototype.update = function () {
+    //console.log(pose);
+    /*
     if (pose == "waveIn") {
         this.paddle.move(-4, 0);
     }
     else if (pose == "waveOut") {
         this.paddle.move(4, 0);
+    }
+    */
+    if(z > center_z) {
+        //for (i = 0; i <= z; i++) {
+            this.paddle.move(-4, 0);
+        //}
+    }
+    else if(z < center_z) {
+        //for (i = 0; i <= z; i++) {
+            this.paddle.move(4, 0);
+        //}
     }
     else {
         this.paddle.move(0, 0);
@@ -121,7 +148,7 @@ Player.prototype.update = function (pose) {
     for (var key in keysDown) {
         var value = Number(key);
         if (value == 37) {
-            this.paddle.move(-4, 0);
+            this.paddle.move(4*diff_z, 0);
         } else if (value == 39) {
             this.paddle.move(4, 0);
         } else {
