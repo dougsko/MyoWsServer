@@ -1,7 +1,9 @@
-# Ruby/Faye Websocket Test
+# Myo Websocket Server
 
 A tiny demo using the [Faye](https://github.com/faye/faye-websocket-ruby) WebSocket implementation.
 
+This server accepts connections from the MyoWsClient application,
+and any other application that wants to consume the Myo's data.
 
 # Running
 
