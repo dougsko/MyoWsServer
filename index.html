@@ -25,14 +25,14 @@
               <h3>Current Client Data</h3>
           </div>
 
-          <div class="" id="myo"/>
+          <div id="myo"/>
 
-              <div class="row mastfoot">
-                <div class="inner">
-                    <a href="http://dougsko.com">doug prostko</a> |
-                    <a href="https://github.com/dougsko/MyoWsServer">github</a>
-                </div>
-             </div>
+          <div class="row mastfoot">
+            <div class="inner">
+                <a href="http://dougsko.com">doug prostko</a> |
+                <a href="https://github.com/dougsko/MyoWsServer">github</a>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -45,6 +45,10 @@
       var myo = document.createElement('samp');
       var ws = new WebSocket(host);
       document.querySelector('#myo').appendChild(myo);
+      ws.onconnect = function () {
+          console.log("connected");
+          myo.innerHTML = "no client connected";
+      };
       ws.onmessage = function (event) {
           var myo_data = JSON.parse(event.data);
           myo.innerHTML = JSON.stringify(myo_data, null, 4);
