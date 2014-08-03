@@ -18,6 +18,25 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Player 1</h3>
+            </div>
+            <div class="col-md-6">
+                <h3>Player 2</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h3 id="score1"/>
+            </div>
+            <div class="col-md-6">
+                <h3 id="score2"/>
+            </div>
+        </div>
+
+
+
           <div class="row">
             <div class="" id="game"/>
           </div>
@@ -56,6 +75,8 @@ var myo;
 var old_myo;
 var tmp = 0;
 var center_z;
+var score1 = 0;
+var score2 = 0;
 
 socket.onmessage = function(e) {
     //pose = JSON.parse(e.data);
@@ -155,18 +176,6 @@ Player.prototype.render = function () {
 };
  
 Player.prototype.update = function (pose) {
-    /*
-    console.log(pose);
-    if (pose == "waveIn") {
-        this.paddle.move(-4, 0);
-    }
-    else if (pose == "waveOut") {
-        this.paddle.move(4, 0);
-    }
-    else {
-        this.paddle.move(0, 0);
-    }
-    */
     if(z > center_z) {
         this.paddle.move(-4, 0);
     }
@@ -232,17 +241,31 @@ Ball.prototype.update = function (paddle1, paddle2) {
             this.x_speed += (paddle1.x_speed / 2);
             this.y += this.y_speed;
         }
-    } else {
+    } 
+    else {
         if (top_y < (paddle2.y + paddle2.height) && bottom_y > paddle2.y && top_x < (paddle2.x + paddle2.width) && bottom_x > paddle2.x) {
             this.y_speed = 3;
             this.x_speed += (paddle2.x_speed / 2);
             this.y += this.y_speed;
         }
     }
+    if(top_y <= -8){
+        console.log(top_y);
+        score1 = score1 + 1;
+        document.getElementById("score1").innerHTML = score1;
+    }
+    if(bottom_y >= 608){
+        console.log(top_y);
+        score2 = score2 + 1;
+        document.getElementById("score2").innerHTML = score2;
+    }
 };
  
 //document.body.appendChild(canvas);
 document.getElementById("game").appendChild(canvas);
+document.getElementById("score1").innerHTML = score1;
+document.getElementById("score2").innerHTML = score2;
+
 animate(step);
  
 window.addEventListener("keydown", function (event) {
