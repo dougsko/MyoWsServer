@@ -7,7 +7,7 @@ This server listens for connections from the [MyoWsClient](https://github.com/do
 
 # Demo
 
-Compile and run the [MyoWsClient](https://github.com/dougsko/MyoWsClient), then browse to the [demo server](http://myo-ws-server.herkuapp.com).
+Compile and run the [MyoWsClient](https://github.com/dougsko/MyoWsClient), then browse to the [demo server](http://myo-ws-server.herokuapp.com).
 
 # Protocol
 
