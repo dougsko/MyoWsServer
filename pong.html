@@ -137,16 +137,13 @@ Player.prototype.update = function (pose) {
     }
     */
     if(z > center_z) {
-        //for (i = 0; i <= z; i++) {
-            this.paddle.move(-4, 0);
-        //}
+        this.paddle.move(-4, 0);
     }
     else if(z < center_z) {
-        //for (i = 0; i <= z; i++) {
-            this.paddle.move(4, 0);
-        //}
+        this.paddle.move(4, 0);
     }
     else {
+        console.log('none');
         this.paddle.move(0, 0);
     }
     for (var key in keysDown) {
