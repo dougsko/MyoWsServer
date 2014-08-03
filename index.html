@@ -1,12 +1,46 @@
 <html>
+    <head>
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/cover/cover.css" rel="stylesheet">
+    </head>
     <body>
-        <h1>Myo Websocket Server</h1>
-        <div id="myo"></div>
+	<div class="site-wrapper">
+      <div class="site-wrapper-inner">
+        <div class="cover-container">
+          <div class="masthead clearfix">
+            <div class="inner">
+                <img src="http://i.imgur.com/jTKlzgf.png" />
+
+              <!-- <h3 class="masthead-brand">Myo Websocket Server</h3>
+                   -->
+              <ul class="nav masthead-nav">
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="/pong">Pong</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="inner cover">
+              <h3>Current Client Data</h3>
+          </div>
+
+          <div class="" id="myo"/>
+
+          <div class="mastfoot">
+            <div class="inner">
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>	
     </body>
 
     <script>
       var host = location.origin.replace(/^http/, 'ws');
-      var myo = document.createElement('pre');
+      var myo = document.createElement('code');
       var ws = new WebSocket(host);
       document.querySelector('#myo').appendChild(myo);
       ws.onmessage = function (event) {
@@ -14,5 +48,10 @@
           myo.innerHTML = JSON.stringify(myo_data, null, 4);
       };
     </script>
+<script
+src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+            <script src="http://getbootstrap.com/assets/js/docs.min.js"></script>
+ 
 </html>
 
