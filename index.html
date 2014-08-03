@@ -13,6 +13,7 @@
            //ws.send('i am a web client');
       }
       ws.onmessage = function (event) {
+          console.log(event.data)
           var myo_data = JSON.parse(event.data);
           console.log(myo_data);
           myo.innerHTML = JSON.stringify(myo_data);

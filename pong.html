@@ -29,9 +29,10 @@ var center_z;
 socket.onmessage = function(e) {
     //pose = JSON.parse(e.data);
     myo = JSON.parse(e.data);
-    pose = myo.pose;
+    pose = myo.frame.pose;
+    console.log(pose)
     old_z = z;
-    z = myo.orientData.z;
+    z = myo.frame.rotation[2];
     diff_z = z - old_z;
     if(pose == 'fist'){
         center_z = z;
