@@ -32,7 +32,7 @@ socket.onmessage = function(e) {
     pose = myo.frame.pose;
     console.log(pose)
     old_z = z;
-    z = myo.frame.rotation[2];
+    z = myo.frame.rotation_w[3];
     diff_z = z - old_z;
     if(pose == 'fist'){
         center_z = z;
