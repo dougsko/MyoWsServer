@@ -1,5 +1,36 @@
 <html>
-<head></head>
+    <head>
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/cover/cover.css" rel="stylesheet">
+    </head>
+    <body>
+	<div class="container">
+        <div class="row">
+            <div class="col-md-9" role="main">
+                <h3 class="masthead-brand">Myo Websocket Server</h3>
+                <img src="http://i.imgur.com/jTKlzgf.png" />
+            </div>
+            <div class="col-md-3" role="main">
+                <ul class="nav masthead-nav">
+                    <li><a href="/">Home</a></li>
+                    <li class="active"><a href="/pong">Pong</a></li>
+                </ul>
+            </div>
+        </div>
+
+          <div class="row">
+            <div class="" id="game"/>
+          </div>
+      </div>
+    </div>	
+    </body>
+<script
+src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+            <script src="http://getbootstrap.com/assets/js/docs.min.js"></script>
+ 
+</html>
+
 <body></body>
         <script>
         	
@@ -15,8 +46,8 @@ var context = canvas.getContext('2d');
 var player = new Player();
 var computer = new Computer();
 var ball = new Ball(200, 300);
-var socket = new WebSocket('ws://myo-ws-server.herokuapp.com')
-//var socket = new WebSocket('ws://192.168.1.106:5000')
+//var socket = new WebSocket('ws://myo-ws-server.herokuapp.com')
+var socket = new WebSocket('ws://192.168.1.106:5000')
 var pose;
 var old_x, old_y, old_z;
 var x, y, z;
@@ -210,7 +241,8 @@ Ball.prototype.update = function (paddle1, paddle2) {
     }
 };
  
-document.body.appendChild(canvas);
+//document.body.appendChild(canvas);
+document.getElementById("game").appendChild(canvas);
 animate(step);
  
 window.addEventListener("keydown", function (event) {
