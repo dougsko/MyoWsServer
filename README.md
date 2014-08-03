@@ -3,9 +3,7 @@ MyoWsServer
 
 # Myo Websocket Server
 
-This server listens for connections from the [MyoWsClient](https://github.com/dougsko/MyoWsClient) and echos the received data to any other websocket client.
-
-This server is built using the [Faye](https://github.com/faye/faye-websocket-ruby) WebSocket implementation.
+This server listens for connections from the [MyoWsClient](https://github.com/dougsko/MyoWsClient) and echos the received data to other websocket clients.  The application is built using the [Faye](https://github.com/faye/faye-websocket-ruby) WebSocket implementation.
 
 # Demo
 
