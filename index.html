@@ -4,24 +4,13 @@
         <div id="myo"></div>
     </body>
 
-    <script type="text/javascript"
-src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-    <script type="text/javascript"
-src="http://balupton.github.com/jquery-syntaxhighlighter/scripts/jquery.syntaxhighlighter.min.js"></script>
-    <script type="text/javascript">$.SyntaxHighlighter.init();</script>
     <script>
       var host = location.origin.replace(/^http/, 'ws');
       var myo = document.createElement('pre');
-      myo.className('highlight');
       var ws = new WebSocket(host);
       document.querySelector('#myo').appendChild(myo);
-      ws.onopen = function(event) {
-           //ws.send('i am a web client');
-      }
       ws.onmessage = function (event) {
-          console.log(event.data)
           var myo_data = JSON.parse(event.data);
-          console.log(myo_data);
           myo.innerHTML = JSON.stringify(myo_data, null, 4);
       };
     </script>
