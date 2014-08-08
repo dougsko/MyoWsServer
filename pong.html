@@ -98,7 +98,7 @@ socket.onmessage = function(e) {
         }
         else if(myo[1].type == "orientation"){
             old_z = z;
-            z = myo.frame.rotation_w[2];
+            z = myo[1].gyroscope[2];
             diff_z = z - old_z;
         }
     }
