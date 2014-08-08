@@ -94,7 +94,7 @@ socket.onmessage = function(e) {
     myo = JSON.parse(e.data);
     if(myo[0] == "event") {
         if(myo[1].type == "pose"){
-            pose = myo.frame.pose;
+            pose = myo[1].pose;
         }
         else if(myo[1].type == "orientation"){
             old_z = z;
