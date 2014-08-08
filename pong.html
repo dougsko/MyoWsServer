@@ -95,14 +95,16 @@ socket.onmessage = function(e) {
     if(myo[0] == "event") {
         if(myo[1].type == "pose"){
             pose = myo[1].pose;
+            console.log(pose)
         }
         else if(myo[1].type == "orientation"){
             old_z = z;
+            console.log(myo[1].gyroscope[2]);
             z = myo[1].gyroscope[2];
             diff_z = z - old_z;
         }
     }
-    if(pose == 'fist'){
+    if(pose == "fist"){
         center_z = z;
     }
 
