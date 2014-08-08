@@ -92,11 +92,16 @@ var score2 = 0;
 socket.onmessage = function(e) {
     //pose = JSON.parse(e.data);
     myo = JSON.parse(e.data);
-    pose = myo.frame.pose;
-    console.log(pose)
-    old_z = z;
-    z = myo.frame.rotation_w[2];
-    diff_z = z - old_z;
+    if(myo[0] == "event") {
+        if(myo[1].type == "pose"){
+            pose = myo.frame.pose;
+        }
+        else if(myo[1].type == "orientation"){
+            old_z = z;
+            z = myo.frame.rotation_w[2];
+            diff_z = z - old_z;
+        }
+    }
     if(pose == 'fist'){
         center_z = z;
     }
